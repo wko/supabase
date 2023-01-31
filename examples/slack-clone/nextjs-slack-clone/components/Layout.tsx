@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import { useContext } from 'react'
-import UserContext from '~/lib/UserContext'
-import { addChannel, deleteChannel } from '~/lib/Store'
-import TrashIcon from '~/components/TrashIcon'
+import React from 'react'
+import TrashIcon from "./TrashIcon";
+import UserContext from "../lib/UserContext";
+import {addChannel, deleteChannel} from "../lib/Store";
 
 export default function Layout(props) {
+  // @ts-ignore
   const { signOut, user, userRoles } = useContext(UserContext)
 
   const slugify = (text) => {

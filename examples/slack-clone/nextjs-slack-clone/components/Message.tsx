@@ -1,10 +1,14 @@
 import { useContext } from 'react'
-import UserContext from '~/lib/UserContext'
-import { deleteMessage } from '~/lib/Store'
-import TrashIcon from '~/components/TrashIcon'
+
+
+import React from 'react'
+import TrashIcon from "./TrashIcon";
+import UserContext from "../lib/UserContext";
+import {deleteMessage} from "../lib/Store";
 
 const Message = ({ message }) => {
-  const { user, userRoles } = useContext(UserContext)
+  // @ts-ignore
+    const { user, userRoles } = useContext(UserContext)
 
   return (
     <div className="py-1 flex items-center space-x-2">

@@ -6,7 +6,8 @@
     "dev": "next",
     "export": "next export",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "update-types": "npx supabase gen types typescript --project-id \"forjrfmwobhxkalqnuzo\" > types/supabase.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.0.4",

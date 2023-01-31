@@ -1,3 +1,5 @@
+import React from "react"
+
 const TrashIcon = (props) => {
   const { size = 16 } = props
 

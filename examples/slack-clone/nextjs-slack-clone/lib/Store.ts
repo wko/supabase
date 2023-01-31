@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
+import {Database} from "../types/supabase";
 
-export const supabase = createClient(
+export const supabase = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.NEXT_PUBLIC_SUPABASE_KEY
 )
@@ -62,9 +63,12 @@ export const useStore = (props) => {
       .subscribe()
     // Cleanup on unmount
     return () => {
-      supabase.removeChannel('public:messages')
-      supabase.removeChannel('public:users')
-      supabase.removeChannel('public:channels')
+
+      supabase.removeChannel(messageListener)
+      // @ts-ignore
+      supabase.removeChannel(userListener)
+      // @ts-ignore
+      supabase.removeChannel(channelListener)
     }
   }, [])
 
@@ -179,7 +183,7 @@ export const fetchMessages = async (channelId, setState) => {
       .from('messages')
       .select(`*, author:user_id(*)`)
       .eq('channel_id', channelId)
-      .order('inserted_at', true)
+      .order('inserted_at', { ascending: true })
     if (setState) setState(data)
     return data
   } catch (error) {
